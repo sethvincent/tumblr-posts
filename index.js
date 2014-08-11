@@ -1,6 +1,5 @@
 var qs = require('querystring');
-var request = require('request');
-var Handlebars = require('handlebars');
+var jsonp = require('jsonp');
 var domify = require('domify');
 
 module.exports = TumblrLatest;
@@ -26,26 +25,25 @@ TumblrLatest.prototype.getPosts = function (cb) {
 
 TumblrLatest.prototype.appendTo = function (el, cb) {
   var self = this;
-  this.getPosts(function (err, posts) {
+  this.getPosts(function (err, res) {
     self.html = domify(self.template({ posts: res.posts }));
     var container = document.getElementById(el);
     container.appendChild(self.html);
-    if (cb) return (err, posts);
+    if (cb) return (err, res);
   });
 };
 
 TumblrLatest.prototype._request = function (cb) {
   var url = this.url + qs.stringify(this.params);
-  var opts = { url: url, json: true };
 
-  if (typeof cb === 'undefined') return request(opts);
-  else request(opts, getResponse);
+  jsonp(url, {}, getResponse);
 
-  function getResponse (error, response, body){
+  function getResponse (error, response){
+    console.log(response)
     if (cb) {
       if (error) return cb(error);
       if (response.statusCode >= 400) return cb({ error: response.statusCode });
-      return cb(null, body);
+      return cb(null, response.response);
     }
   }
 };

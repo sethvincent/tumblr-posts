@@ -1,5 +1,5 @@
 # tumblr-posts
-Get the latest posts for your tumblr blog to embed them on another site.
+Easily retrieve and embed the latest posts from your tumblr blog.
 
 ## Examples
 

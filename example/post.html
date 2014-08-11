@@ -1,7 +1,9 @@
 <div id="tumblr-latest-posts">
   {{#each posts}}
   <div class="tumblr-latest-post">
-    <h3 class="tumblr-latest-post-title">{{title}}</h3>
+    <h3 class="tumblr-latest-post-title">
+      <a href="{{post_url}}">{{title}}</a>
+    </h3>
   </div>
   {{/each}}
 </div>
