@@ -3,8 +3,8 @@ var Handlebars = require('handlebars');
 var fs = require('fs');
 
 var latest = new TumblrLatest({
-  blog: 'seattleio.tumblr.com',
-  key: 'GucczLgzlxYpKSfLcg79KqzbyYQA3QtubHJ9jYqh89r6IptwIt',
+  blog: 'YOUR-BLOG.tumblr.com',
+  key: 'YOUR API KEY',
   template: Handlebars.compile(fs.readFileSync(__dirname + '/post.html', 'utf8'))
 });
 
